@@ -26,7 +26,5 @@
     "declarationMap": true,
     "sourceMap": true,
     "incremental": false
-  },
-  "include": ["${configDir}/src/**/*.ts", "${configDir}/src/**/*.tsx"],
-  "exclude": ["${configDir}/node_modules", "${configDir}/dist"]
+  }
 }

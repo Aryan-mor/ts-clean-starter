@@ -1,71 +1,50 @@
 # AGENTS.md
 
-Rules for AI coding agents (Cursor, Claude Code, Codex, ...) working in this repo.
-Read this file fully before you change code.
+Rules for AI coding agents (Cursor, Claude Code, Codex, ...) working in a project
+that uses these configs. Read this file fully before you change code.
 
-## Stack
+## Tooling
 
-- **Monorepo:** Turborepo + pnpm workspaces
-- **Language:** TypeScript 7 (strict), ES modules only (`"type": "module"`)
-- **Web:** Next.js (App Router) + React 19 in `apps/web`
-- **API:** Hono on Node.js in `apps/api` (bundled with esbuild)
-- **Lint:** ESLint 10 flat config + typescript-eslint (type-aware) in `packages/eslint-config`
+- **Language:** TypeScript (strict), ES modules only (`"type": "module"`)
+- **Lint:** ESLint 10 flat config + typescript-eslint (type-aware). Rules live in
+  `eslint.base.js`; `eslint.config.js` re-exports it. Next.js and React variants:
+  `eslint.config.next.js` and `eslint.config.react.js`.
 - **Format:** Prettier (print width 100)
 - **Git:** husky + lint-staged + commitlint (Conventional Commits)
-
-## Layout
-
-```
-apps/
-  web/                 Next.js app
-  api/                 Hono API (src/app.ts = routes, src/index.ts = server)
-packages/
-  shared/              Shared types and helpers (branded IDs, ...)
-  ui/                  Shared React components
-  eslint-config/       Shared ESLint configs (base, react-internal, next-js)
-  typescript-config/   Shared tsconfig files (base, node-library, react-library, nextjs)
-```
-
-Internal packages are named `@packages/*` and apps `@apps/*`.
-`packages/shared` and `packages/ui` ship TypeScript source (no build step).
-Next.js compiles them (`transpilePackages`) and the API bundles them with esbuild.
+- **Package manager:** pnpm (version pinned in `package.json`)
 
 ## Commands
 
-Run from the repo root:
+Run from the project root:
 
-| Command             | What it does                      |
-| ------------------- | --------------------------------- |
-| `pnpm install`      | Install everything                |
-| `pnpm dev`          | Start all apps in watch mode      |
-| `pnpm build`        | Build all apps                    |
-| `pnpm lint`         | ESLint, fails on any warning      |
-| `pnpm lint:fix`     | ESLint with auto-fix              |
-| `pnpm check-types`  | `tsc --noEmit` in every workspace |
-| `pnpm format`       | Prettier write                    |
-| `pnpm format:check` | Prettier check (CI)               |
-| `pnpm clean`        | Remove build output               |
-| `pnpm clean:all`    | Also remove all `node_modules`    |
+| Command             | What it does                 |
+| ------------------- | ---------------------------- |
+| `pnpm install`      | Install devDependencies      |
+| `pnpm lint`         | ESLint, fails on any warning |
+| `pnpm lint:fix`     | ESLint with auto-fix         |
+| `pnpm check-types`  | `tsc --noEmit`               |
+| `pnpm format`       | Prettier write               |
+| `pnpm format:check` | Prettier check (CI)          |
 
-One workspace only: `pnpm --filter @apps/api <script>`.
-Add a dependency: `pnpm --filter @apps/web add <pkg>` (never `npm` or `yarn`).
+Use pnpm, never npm or yarn. Add a dependency with `pnpm add <pkg>` or
+`pnpm add -D <pkg>`. In a monorepo, scope it: `pnpm --filter <name> add <pkg>`.
 
 ## Before you finish a task
 
 1. `pnpm lint` passes with **0 warnings**.
 2. `pnpm check-types` passes.
 3. `pnpm format:check` passes (run `pnpm format` if not).
-4. If you touched build config, `pnpm build` passes.
+4. If you touched build config, the project build passes.
 
-Do not say a task is done until these pass. Do not "fix" a failure by weakening a rule or a
-tsconfig option.
+Do not say a task is done until these pass. Do not "fix" a failure by weakening a
+rule or a tsconfig option.
 
 ## Code style
 
 - **No `any`.** Use `unknown` and narrow it, or write a real type.
 - **No non-null `!`** unless you can explain it in a comment. Handle `undefined` instead.
 - **Small functions** with one job. Prefer early returns over nested `if`/`else`.
-- **Arrow functions** for components and helpers. Named exports in packages.
+- **Arrow functions** for components and helpers. Prefer named exports.
 - `const` by default. No `var`. Do not reassign parameters.
 - `===` always (`== null` is the only exception).
 - `??` for defaults, not `||` (so `0` and `""` stay valid).
@@ -76,13 +55,16 @@ tsconfig option.
 
 ## Imports
 
-- **NodeNext: relative imports need the `.js` extension**, even in `.ts` files:
-  `import { app } from "./app.js";` TypeScript maps `.js` to the `.ts` file.
+- **With NodeNext** (`tsconfig.base.json` and `tsconfig.node.json`): relative imports
+  need the `.js` extension, even in `.ts` files: `import { app } from "./app.js";`
+  TypeScript maps `.js` to the `.ts` file. Bundler configs (`tsconfig.next.json`)
+  do not need the extension.
 - **Import the file directly. Do not create barrel files** (`index.ts` that re-exports
-  everything). Barrels make circular imports easy, and a circular import gives `undefined`
-  at runtime that TypeScript cannot see. `import-x/no-cycle` will fail the lint.
-- Packages expose files directly: `import { toUserId } from "@packages/shared/ids";`
-- Type-only imports use `type`: `import { formatUser, type User } from "@packages/shared/user";`
+  everything). Barrels make circular imports easy, and a circular import gives
+  `undefined` at runtime that TypeScript cannot see. `import-x/no-cycle` will fail
+  the lint.
+- Type-only imports use `type`:
+  `import { formatUser, type User } from "./user.js";`
 - Import order is enforced by ESLint (perfectionist) and fixed by `pnpm lint:fix`.
   Do not sort imports by hand and do not use the editor's "Organize Imports".
 
@@ -99,7 +81,7 @@ tsconfig option.
 
 ## Lint rules (and why)
 
-All rules live in `packages/eslint-config/base.js` with a comment for each.
+All rules live in `eslint.base.js` with a comment for each.
 
 - `strictTypeChecked` + `stylisticTypeChecked`: catches unsafe `any`, forgotten promises,
   useless conditions.
@@ -107,8 +89,6 @@ All rules live in `packages/eslint-config/base.js` with a comment for each.
   prefix with `_` if one must stay.
 - `import-x/no-cycle`, `no-self-import`, `no-duplicates`, `first`: clean import graph.
 - `perfectionist/*`: one import order everywhere, auto-fixable.
-- `turbo/no-undeclared-env-vars`: every env var must be listed in `turbo.json`
-  (`globalEnv` or a task's `env`), or the Turbo cache can return wrong builds.
 - `only-warn`: rules show as warnings in the editor, but `--max-warnings 0` still fails.
 
 **Never disable a lint rule without a comment that says why:**
@@ -117,12 +97,13 @@ All rules live in `packages/eslint-config/base.js` with a comment for each.
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- lib has no types
 ```
 
-Do not add file-wide `eslint-disable` and never edit the shared config to make your code pass.
+Do not add file-wide `eslint-disable` and never edit the shared config just to make
+your code pass.
 
 ## Git
 
 - Conventional Commits, checked by commitlint:
-  `feat(api): add users route`, `fix(web): handle empty list`, `chore: bump deps`.
+  `feat: add users route`, `fix: handle empty list`, `chore: bump deps`.
   Types: `feat`, `fix`, `refactor`, `perf`, `test`, `docs`, `style`, `build`, `ci`, `chore`.
 - The pre-commit hook runs ESLint `--fix` and Prettier on staged files.
   Never skip hooks with `--no-verify`.

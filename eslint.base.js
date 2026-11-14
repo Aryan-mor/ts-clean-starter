@@ -4,20 +4,23 @@ import { createTypeScriptImportResolver } from "eslint-import-resolver-typescrip
 import { importX } from "eslint-plugin-import-x";
 import onlyWarn from "eslint-plugin-only-warn";
 import perfectionist from "eslint-plugin-perfectionist";
-import turboPlugin from "eslint-plugin-turbo";
 import unusedImports from "eslint-plugin-unused-imports";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
 /**
- * Shared ESLint config for every workspace.
+ * Shared ESLint rules. eslint.config.js re-exports this file.
+ * Next.js / React variants import from here, not from eslint.config.js.
  *
  * Why everything is so strict: the compiler can't catch forgotten promises,
  * unsafe `any`, or circular imports. These rules can.
  *
+ * For Next.js, see eslint.config.next.js. For a React library, see
+ * eslint.config.react.js.
+ *
  * @type {import("eslint").Linter.Config[]}
  */
-export const config = [
+const config = [
   // ESLint only lints .js by default; this makes it lint TypeScript too.
   { files: ["**/*.{js,mjs,ts,tsx}"] },
   js.configs.recommended,
@@ -41,14 +44,6 @@ export const config = [
 
   // Turns off rules that fight Prettier. Prettier owns formatting.
   eslintConfigPrettier,
-
-  // Every env var must be listed in turbo.json, or the Turbo cache can be wrong.
-  {
-    plugins: { turbo: turboPlugin },
-    rules: {
-      "turbo/no-undeclared-env-vars": "error",
-    },
-  },
 
   // Clean-code rules for every file.
   {
@@ -133,11 +128,12 @@ export const config = [
       perfectionist: { type: "natural", ignoreCase: true },
     },
     rules: {
-      // Import lines: packages first, then our @packages/@apps, then local files.
+      // Import lines: packages first, then path aliases / internal packages, then local files.
+      // Adjust `internalPattern` to match your aliases (e.g. "^@/", "^@acme/").
       "perfectionist/sort-imports": [
         "error",
         {
-          internalPattern: ["^@packages/", "^@apps/"],
+          internalPattern: ["^@/", "^@packages/", "^@apps/"],
           groups: [["builtin", "external"], "internal", ["parent", "sibling", "index"], "unknown"],
           newlinesBetween: 0,
         },
@@ -167,3 +163,5 @@ export const config = [
     ],
   },
 ];
+
+export default config;

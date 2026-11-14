@@ -48,15 +48,15 @@
     "files.trimTrailingWhitespace": false
   },
 
-  // Monorepo: each package has its own eslint.config.js.
+  // Auto-detects an eslint.config.js in a monorepo package, if you add one later.
   "eslint.workingDirectories": [{ "mode": "auto" }],
   "eslint.validate": ["javascript", "typescript", "typescriptreact"],
 
   // Use the TypeScript version from this repo (TypeScript 7), not the editor's built-in one.
-  "js/ts.tsdk.path": "node_modules/typescript",
+  "js/ts.tsdk.path": "node_modules/@typescript/native",
   "js/ts.experimental.useTsgo": true,
   // Older VS Code / Cursor builds read these names instead.
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsdk": "node_modules/@typescript/native/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   // Auto-imports use the shortest relative path and keep the .js extension (NodeNext).
   "typescript.preferences.importModuleSpecifier": "shortest",

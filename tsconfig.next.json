@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Next.js app",
-  "extends": "./base.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "plugins": [{ "name": "next" }],
@@ -12,11 +12,11 @@
     "noEmit": true
   },
   "include": [
-    "${configDir}/next-env.d.ts",
-    "${configDir}/**/*.ts",
-    "${configDir}/**/*.tsx",
-    "${configDir}/.next/types/**/*.ts",
-    "${configDir}/.next/dev/types/**/*.ts"
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["${configDir}/node_modules"]
+  "exclude": ["node_modules"]
 }

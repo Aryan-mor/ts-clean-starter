@@ -1,0 +1,28 @@
+{
+  "name": "@apps/api",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "node build.mjs",
+    "start": "node dist/index.js",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.3",
+    "@packages/shared": "workspace:*",
+    "hono": "^4.13.16"
+  },
+  "devDependencies": {
+    "@packages/eslint-config": "workspace:*",
+    "@packages/typescript-config": "workspace:*",
+    "@types/node": "26.4.1",
+    "esbuild": "^0.28.2",
+    "eslint": "10.9.1",
+    "tsx": "^4.23.0",
+    "typescript": "7.0.2"
+  }
+}

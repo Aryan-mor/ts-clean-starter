@@ -1,0 +1,35 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# Testing
+coverage
+
+# Turbo
+.turbo
+
+# Vercel
+.vercel
+
+# Build outputs
+.next/
+out/
+build
+dist
+next-env.d.ts
+*.tsbuildinfo
+
+# Debug
+npm-debug.log*
+pnpm-debug.log*
+
+# Misc
+.DS_Store
+Thumbs.db
+*.pem

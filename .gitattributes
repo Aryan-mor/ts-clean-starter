@@ -1,0 +1,8 @@
+# Always LF in the repo, also on Windows.
+* text=auto eol=lf
+
+*.ico binary
+*.png binary
+*.jpg binary
+*.woff binary
+*.woff2 binary

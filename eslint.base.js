@@ -60,6 +60,20 @@ const config = [
       curly: ["error", "all"],
       // console.log is for debugging only; info/warn/error are fine for real logs.
       "no-console": ["error", { allow: ["info", "warn", "error"] }],
+      // Monorepo: never reach into another package with a relative path
+      // ("../../../shared/src/..."). Import it by name: "@packages/shared".
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              regex: "^(\\./)?(\\.\\./){2,}[^/]+/src/",
+              message:
+                'Import other packages by name (e.g. "@packages/shared"), not by a relative path.',
+            },
+          ],
+        },
+      ],
     },
   },
 

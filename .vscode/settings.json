@@ -1,4 +1,8 @@
 {
+  // Auto-save "afterDelay" skips format + ESLint fix on save. "onFocusChange" runs
+  // them when you switch tab or window (Ctrl+S runs them too).
+  "files.autoSave": "onFocusChange",
+
   // Prettier formats on save (spaces, quotes, line breaks). It never sorts imports.
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
@@ -6,7 +10,7 @@
   // ESLint fixes on save: removes unused imports, sorts imports, adds `import type`, ...
   // organizeImports is OFF: it sorts imports its own way and fights ESLint.
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
+    "source.fixAll.eslint": "always",
     "source.organizeImports": "never",
     "source.sortImports": "never"
   },
@@ -15,7 +19,7 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit",
+      "source.fixAll.eslint": "always",
       "source.organizeImports": "never",
       "source.sortImports": "never"
     }
@@ -23,7 +27,7 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit",
+      "source.fixAll.eslint": "always",
       "source.organizeImports": "never",
       "source.sortImports": "never"
     }
@@ -31,7 +35,7 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit",
+      "source.fixAll.eslint": "always",
       "source.organizeImports": "never",
       "source.sortImports": "never"
     }
@@ -58,9 +62,12 @@
   // Older VS Code / Cursor builds read these names instead.
   "typescript.tsdk": "node_modules/@typescript/native/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  // Auto-imports use the shortest relative path and keep the .js extension (NodeNext).
-  "typescript.preferences.importModuleSpecifier": "shortest",
+  // Auto-imports: relative paths inside one package, package names ("@packages/shared")
+  // across packages, and keep the .js extension (NodeNext).
+  "typescript.preferences.importModuleSpecifier": "project-relative",
   "typescript.preferences.importModuleSpecifierEnding": "js",
+  // Never suggest a relative path into another package ("../../../shared/src/...").
+  "typescript.preferences.autoImportSpecifierExcludeRegexes": ["^(\\./)?(\\.\\./){2,}[^/]+/src/"],
 
   // Same file format on every OS.
   "files.eol": "\n",

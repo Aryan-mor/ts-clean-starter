@@ -150,6 +150,14 @@ asked:
 On save, Prettier formats the file and ESLint removes unused imports and sorts
 imports. Do not turn on "Organize Imports"; it fights ESLint.
 
+Auto-save must be `onFocusChange` (set in `.vscode/settings.json`). With
+`afterDelay` the editor skips all on-save actions, so imports are not sorted.
+
+In a monorepo, import other packages by name (`@packages/shared`), never by a
+relative path into their `src`. ESLint (`no-restricted-imports`) flags it, and
+the editor setting stops auto-import from suggesting it. If a wrong path still
+appears, it usually came from an AI tab completion, not from TypeScript.
+
 ## Use this kit in a monorepo
 
 1. Copy the same files to the **repo root**.

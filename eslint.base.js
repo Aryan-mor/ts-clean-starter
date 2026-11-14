@@ -4,6 +4,7 @@ import { createTypeScriptImportResolver } from "eslint-import-resolver-typescrip
 import { importX } from "eslint-plugin-import-x";
 import onlyWarn from "eslint-plugin-only-warn";
 import perfectionist from "eslint-plugin-perfectionist";
+import unicorn from "eslint-plugin-unicorn";
 import unusedImports from "eslint-plugin-unused-imports";
 import globals from "globals";
 import tseslint from "typescript-eslint";
@@ -97,6 +98,52 @@ const config = [
       "@typescript-eslint/prefer-optional-chain": "error",
       // Template strings only with string/number values.
       "@typescript-eslint/restrict-template-expressions": ["error", { allowNumber: true }],
+      // Names: variables/functions camelCase, types PascalCase, constants UPPER_CASE.
+      // PascalCase is also allowed for React components and const objects (Currency).
+      // Keys in quotes ("Content-Type", "snake_key") are free; plain keys must be camelCase.
+      "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          selector: "default",
+          format: ["camelCase"],
+          leadingUnderscore: "allow",
+        },
+        {
+          selector: "variable",
+          format: ["camelCase", "UPPER_CASE", "PascalCase"],
+          leadingUnderscore: "allow",
+        },
+        { selector: "function", format: ["camelCase", "PascalCase"] },
+        {
+          selector: "parameter",
+          format: ["camelCase"],
+          leadingUnderscore: "allow",
+        },
+        { selector: "typeLike", format: ["PascalCase"] },
+        { selector: "enumMember", format: ["UPPER_CASE", "PascalCase"] },
+        // __Org__ style brand keys (branded ID types) are allowed.
+        {
+          selector: ["objectLiteralProperty", "typeProperty"],
+          format: ["camelCase", "UPPER_CASE", "PascalCase"],
+          leadingUnderscore: "allowDouble",
+          trailingUnderscore: "allowDouble",
+        },
+        {
+          selector: ["objectLiteralProperty", "typeProperty"],
+          modifiers: ["requiresQuotes"],
+          format: null,
+        },
+        { selector: "import", format: null },
+      ],
+    },
+  },
+
+  // File names in kebab-case: pipeline-stage.ts, not pipeline_stage.ts or PipelineStage.ts.
+  {
+    files: ["**/*.{js,mjs,ts,tsx}"],
+    plugins: { unicorn },
+    rules: {
+      "unicorn/filename-case": ["error", { case: "kebabCase" }],
     },
   },
 

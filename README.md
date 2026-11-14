@@ -82,6 +82,7 @@ pnpm add -D \
   eslint-plugin-import-x@^4.18.1 \
   eslint-plugin-only-warn@1.2.1 \
   eslint-plugin-perfectionist@^5.13.0 \
+  eslint-plugin-unicorn@^79.0.0 \
   eslint-plugin-unused-imports@^4.4.1 \
   globals@17.12.0 \
   husky@^9.1.7 \
@@ -157,6 +158,13 @@ In a monorepo, import other packages by name (`@packages/shared`), never by a
 relative path into their `src`. ESLint (`eslint-rules/no-relative-package-imports.js`) auto-fixes it to the package name on save, and
 the editor setting stops auto-import from suggesting it. If a wrong path still
 appears, it usually came from an AI tab completion, not from TypeScript.
+
+## Naming rules
+
+- Variables and functions: `camelCase`. Types and classes: `PascalCase`. Constants: `UPPER_CASE`.
+- Object keys must be camelCase. Put a key in quotes when it must be different (`"Content-Type"`).
+- File names: `kebab-case` (`pipeline-stage.ts`), checked by `unicorn/filename-case`.
+- With Drizzle, set `casing: "snake_case"` and leave out column names: `createdAt` becomes `created_at`.
 
 ## Use this kit in a monorepo
 

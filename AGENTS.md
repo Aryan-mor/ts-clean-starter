@@ -34,17 +34,18 @@ Next.js compiles them (`transpilePackages`) and the API bundles them with esbuil
 
 Run from the repo root:
 
-| Command             | What it does                              |
-| ------------------- | ----------------------------------------- |
-| `pnpm install`      | Install everything                        |
-| `pnpm dev`          | Start all apps in watch mode              |
-| `pnpm build`        | Build all apps                            |
-| `pnpm lint`         | ESLint, fails on any warning              |
-| `pnpm lint:fix`     | ESLint with auto-fix                      |
-| `pnpm check-types`  | `tsc --noEmit` in every workspace         |
-| `pnpm format`       | Prettier write                            |
-| `pnpm format:check` | Prettier check (CI)                       |
-| `pnpm clean`        | Remove build output (`--all` = also deps) |
+| Command             | What it does                      |
+| ------------------- | --------------------------------- |
+| `pnpm install`      | Install everything                |
+| `pnpm dev`          | Start all apps in watch mode      |
+| `pnpm build`        | Build all apps                    |
+| `pnpm lint`         | ESLint, fails on any warning      |
+| `pnpm lint:fix`     | ESLint with auto-fix              |
+| `pnpm check-types`  | `tsc --noEmit` in every workspace |
+| `pnpm format`       | Prettier write                    |
+| `pnpm format:check` | Prettier check (CI)               |
+| `pnpm clean`        | Remove build output               |
+| `pnpm clean:all`    | Also remove all `node_modules`    |
 
 One workspace only: `pnpm --filter @apps/api <script>`.
 Add a dependency: `pnpm --filter @apps/web add <pkg>` (never `npm` or `yarn`).

@@ -59,16 +59,17 @@ Open the folder in VS Code or Cursor and install the recommended extensions when
 
 ## Commands
 
-| Command             | What it does                                                         |
-| ------------------- | -------------------------------------------------------------------- |
-| `pnpm dev`          | Start all apps in watch mode                                         |
-| `pnpm build`        | Build all apps                                                       |
-| `pnpm lint`         | ESLint in every workspace, fails on warnings                         |
-| `pnpm lint:fix`     | ESLint with auto-fix                                                 |
-| `pnpm check-types`  | Type check every workspace                                           |
-| `pnpm format`       | Format everything with Prettier                                      |
-| `pnpm format:check` | Check formatting (used in CI)                                        |
-| `pnpm clean`        | Remove build output (`pnpm clean --all` also removes `node_modules`) |
+| Command             | What it does                                 |
+| ------------------- | -------------------------------------------- |
+| `pnpm dev`          | Start all apps in watch mode                 |
+| `pnpm build`        | Build all apps                               |
+| `pnpm lint`         | ESLint in every workspace, fails on warnings |
+| `pnpm lint:fix`     | ESLint with auto-fix                         |
+| `pnpm check-types`  | Type check every workspace                   |
+| `pnpm format`       | Format everything with Prettier              |
+| `pnpm format:check` | Check formatting (used in CI)                |
+| `pnpm clean`        | Remove build output (dist, .next, .turbo)    |
+| `pnpm clean:all`    | Also remove all `node_modules`               |
 
 Run a script in one workspace: `pnpm --filter @apps/api dev`.
 

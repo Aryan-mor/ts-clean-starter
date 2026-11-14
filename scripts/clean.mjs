@@ -1,6 +1,6 @@
 // Removes build output and caches in every workspace. Cross-platform (no rm -rf).
-// Usage: pnpm clean        -> dist, .next, .turbo, coverage
-//        pnpm clean --all  -> also node_modules
+// Usage: pnpm clean      -> dist, .next, .turbo, coverage
+//        pnpm clean:all  -> also node_modules
 import { existsSync, readdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
 

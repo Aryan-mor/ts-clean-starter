@@ -7,6 +7,7 @@ import perfectionist from "eslint-plugin-perfectionist";
 import unusedImports from "eslint-plugin-unused-imports";
 import globals from "globals";
 import tseslint from "typescript-eslint";
+import { localPlugin } from "./eslint-rules/no-relative-package-imports.js";
 
 /**
  * Shared ESLint rules. eslint.config.js re-exports this file.
@@ -47,6 +48,7 @@ const config = [
 
   // Clean-code rules for every file.
   {
+    plugins: { local: localPlugin },
     rules: {
       // Always === and !== (except "== null", which checks null and undefined).
       eqeqeq: ["error", "always", { null: "ignore" }],
@@ -61,19 +63,8 @@ const config = [
       // console.log is for debugging only; info/warn/error are fine for real logs.
       "no-console": ["error", { allow: ["info", "warn", "error"] }],
       // Monorepo: never reach into another package with a relative path
-      // ("../../../shared/src/..."). Import it by name: "@packages/shared".
-      "no-restricted-imports": [
-        "error",
-        {
-          patterns: [
-            {
-              regex: "^(\\./)?(\\.\\./){2,}[^/]+/src/",
-              message:
-                'Import other packages by name (e.g. "@packages/shared"), not by a relative path.',
-            },
-          ],
-        },
-      ],
+      // ("../../../shared/src/..."). Auto-fixed to the name: "@packages/shared".
+      "local/no-relative-package-imports": "error",
     },
   },
 

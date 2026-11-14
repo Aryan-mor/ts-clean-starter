@@ -154,7 +154,7 @@ Auto-save must be `onFocusChange` (set in `.vscode/settings.json`). With
 `afterDelay` the editor skips all on-save actions, so imports are not sorted.
 
 In a monorepo, import other packages by name (`@packages/shared`), never by a
-relative path into their `src`. ESLint (`no-restricted-imports`) flags it, and
+relative path into their `src`. ESLint (`eslint-rules/no-relative-package-imports.js`) auto-fixes it to the package name on save, and
 the editor setting stops auto-import from suggesting it. If a wrong path still
 appears, it usually came from an AI tab completion, not from TypeScript.
 

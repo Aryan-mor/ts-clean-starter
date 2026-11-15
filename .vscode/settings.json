@@ -94,5 +94,37 @@
     "**/dist": true,
     "**/.next": true,
     "pnpm-lock.yaml": true
+  },
+
+  // Editor only: plain TODO shows as a warning too. `pnpm lint` ignores it;
+  // TODO! and FIXME fail lint (see no-warning-comments in the ESLint config).
+  "eslint.options": {
+    "overrideConfig": {
+      "rules": {
+        "no-warning-comments": ["warn", { "terms": ["todo", "fixme"], "location": "start" }]
+      }
+    }
+  },
+  // Todo Tree: highlight markers and list them in its sidebar panel.
+  "todo-tree.general.tags": ["TODO!", "FIXME", "TODO"],
+  "todo-tree.highlights.customHighlight": {
+    "TODO": {
+      "icon": "check",
+      "foreground": "#000000",
+      "background": "#f2c94c",
+      "iconColour": "#f2c94c"
+    },
+    "TODO!": {
+      "icon": "alert",
+      "foreground": "#ffffff",
+      "background": "#eb5757",
+      "iconColour": "#eb5757"
+    },
+    "FIXME": {
+      "icon": "alert",
+      "foreground": "#ffffff",
+      "background": "#eb5757",
+      "iconColour": "#eb5757"
+    }
   }
 }

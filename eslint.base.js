@@ -218,6 +218,15 @@ const config = [
     },
   },
 
+  // Comment markers. A plain TODO is only a reminder: highlighted in the editor,
+  // never fails lint. TODO! and FIXME must be fixed before merge: they fail
+  // `pnpm lint`, so CI fails too. The editor also warns on plain TODO through
+  // "eslint.options" in .vscode/settings.json.
+  {
+    rules: {
+      "no-warning-comments": ["error", { terms: ["todo!", "fixme"], location: "start" }],
+    },
+  },
   // Every rule becomes a warning, so the editor shows yellow, not red.
   // `eslint --max-warnings 0` still fails CI and commits on any warning.
   {

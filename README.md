@@ -167,6 +167,12 @@ appears, it usually came from an AI tab completion, not from TypeScript.
 - File names: `kebab-case` (`pipeline-stage.ts`), checked by `unicorn/filename-case`.
 - With Drizzle, set `casing: "snake_case"` and leave out column names: `createdAt` becomes `created_at`.
 
+## Comment markers
+
+- `// TODO: ...` is a reminder. The editor highlights it and shows a warning, but `pnpm lint` and CI ignore it.
+- `// TODO!: ...` or `// FIXME: ...` must be fixed before merge. `pnpm lint` fails on it, so the pre-commit hook and CI block it.
+- Install the recommended [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree) extension to see every marker in one sidebar list.
+
 ## Use this kit in a monorepo
 
 1. Copy the same files to the **repo root**.

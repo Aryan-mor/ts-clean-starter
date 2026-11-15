@@ -51,7 +51,14 @@ rule or a tsconfig option.
 - Always `await`, `return`, or `void` a promise. No floating promises.
 - A `switch` over a union must handle every case.
 - `console.log` is for debugging only. Use `console.info`, `console.warn`, `console.error`.
-- Comments explain **why**, not what. Short and plain English.
+
+## Comments
+
+- Default: no comment. Clear names and small functions should explain the code.
+- Write one only when the code is important or not obvious (a tricky query, a non-obvious rule, a security caveat).
+- Above functions, exports, types and object properties, always use JSDoc (`/** ... */`), never `//`, so it shows on hover in the IDE.
+- Explain **why** (or the contract: input, output, edge cases), not what the code does. Short, plain English.
+- `//` is only for `TODO` / `TODO!` / `FIXME` markers and short notes inside a function body.
 
 ## Imports
 

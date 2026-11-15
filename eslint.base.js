@@ -10,6 +10,41 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 import { localPlugin } from "./eslint-rules/no-relative-package-imports.js";
 
+// Base naming rules. Reused by the constants-folder override below.
+const namingConvention = [
+  {
+    selector: "default",
+    format: ["camelCase"],
+    leadingUnderscore: "allow",
+  },
+  {
+    selector: "variable",
+    format: ["camelCase", "UPPER_CASE", "PascalCase"],
+    leadingUnderscore: "allow",
+  },
+  { selector: "function", format: ["camelCase", "PascalCase"] },
+  {
+    selector: "parameter",
+    format: ["camelCase"],
+    leadingUnderscore: "allow",
+  },
+  { selector: "typeLike", format: ["PascalCase"] },
+  { selector: "enumMember", format: ["UPPER_CASE", "PascalCase"] },
+  // __Org__ style brand keys (branded ID types) are allowed.
+  {
+    selector: ["objectLiteralProperty", "typeProperty"],
+    format: ["camelCase", "UPPER_CASE", "PascalCase"],
+    leadingUnderscore: "allowDouble",
+    trailingUnderscore: "allowDouble",
+  },
+  {
+    selector: ["objectLiteralProperty", "typeProperty"],
+    modifiers: ["requiresQuotes"],
+    format: null,
+  },
+  { selector: "import", format: null },
+];
+
 /**
  * Shared ESLint rules. eslint.config.js re-exports this file.
  * Next.js / React variants import from here, not from eslint.config.js.
@@ -101,39 +136,25 @@ const config = [
       // Names: variables/functions camelCase, types PascalCase, constants UPPER_CASE.
       // PascalCase is also allowed for React components and const objects (Currency).
       // Keys in quotes ("Content-Type", "snake_key") are free; plain keys must be camelCase.
+      "@typescript-eslint/naming-convention": ["error", ...namingConvention],
+    },
+  },
+
+  // constants folders: enum-like objects are PascalCase (Currency),
+  // their value arrays are UPPER_CASE (CURRENCIES). Nothing else is allowed there.
+  {
+    files: ["**/constants/**/*.{ts,tsx}"],
+    rules: {
       "@typescript-eslint/naming-convention": [
         "error",
-        {
-          selector: "default",
-          format: ["camelCase"],
-          leadingUnderscore: "allow",
-        },
+        ...namingConvention,
+        { selector: "variable", modifiers: ["const", "global"], format: ["PascalCase"] },
         {
           selector: "variable",
-          format: ["camelCase", "UPPER_CASE", "PascalCase"],
-          leadingUnderscore: "allow",
+          modifiers: ["const", "global"],
+          types: ["array"],
+          format: ["UPPER_CASE"],
         },
-        { selector: "function", format: ["camelCase", "PascalCase"] },
-        {
-          selector: "parameter",
-          format: ["camelCase"],
-          leadingUnderscore: "allow",
-        },
-        { selector: "typeLike", format: ["PascalCase"] },
-        { selector: "enumMember", format: ["UPPER_CASE", "PascalCase"] },
-        // __Org__ style brand keys (branded ID types) are allowed.
-        {
-          selector: ["objectLiteralProperty", "typeProperty"],
-          format: ["camelCase", "UPPER_CASE", "PascalCase"],
-          leadingUnderscore: "allowDouble",
-          trailingUnderscore: "allowDouble",
-        },
-        {
-          selector: ["objectLiteralProperty", "typeProperty"],
-          modifiers: ["requiresQuotes"],
-          format: null,
-        },
-        { selector: "import", format: null },
       ],
     },
   },

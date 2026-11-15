@@ -163,6 +163,7 @@ appears, it usually came from an AI tab completion, not from TypeScript.
 
 - Variables and functions: `camelCase`. Types and classes: `PascalCase`. Constants: `UPPER_CASE`.
 - Object keys must be camelCase. Put a key in quotes when it must be different (`"Content-Type"`).
+- In a `constants/` folder it is stricter: enum-like objects are `PascalCase` and their value arrays `UPPER_CASE`, e.g. `export const Currency = { EUR: "EUR" } as const;` and `export const CURRENCIES = Object.values(Currency);`.
 - File names: `kebab-case` (`pipeline-stage.ts`), checked by `unicorn/filename-case`.
 - With Drizzle, set `casing: "snake_case"` and leave out column names: `createdAt` becomes `created_at`.
 

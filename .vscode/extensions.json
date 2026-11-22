@@ -5,6 +5,7 @@
     "gruntfuggly.todo-tree",
     "editorconfig.editorconfig",
     "yoavbls.pretty-ts-errors",
-    "typescriptteam.native-preview"
+    "typescriptteam.native-preview",
+    "christian-kohler.path-intellisense"
   ]
 }

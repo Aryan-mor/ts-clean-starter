@@ -10,6 +10,7 @@
   // ESLint fixes on save: removes unused imports, sorts imports, adds `import type`, ...
   // organizeImports is OFF: it sorts imports its own way and fights ESLint.
   "editor.codeActionsOnSave": {
+    "source.addMissingImports.ts": "always",
     "source.fixAll.eslint": "always",
     "source.organizeImports": "never",
     "source.sortImports": "never"
@@ -19,6 +20,7 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
+      "source.addMissingImports.ts": "always",
       "source.fixAll.eslint": "always",
       "source.organizeImports": "never",
       "source.sortImports": "never"
@@ -27,6 +29,7 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
+      "source.addMissingImports.ts": "always",
       "source.fixAll.eslint": "always",
       "source.organizeImports": "never",
       "source.sortImports": "never"
@@ -66,6 +69,9 @@
   // across packages, and keep the .js extension (NodeNext).
   "typescript.preferences.importModuleSpecifier": "project-relative",
   "typescript.preferences.importModuleSpecifierEnding": "js",
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "path-intellisense.extensionOnImport": true,
+  "path-intellisense.showOnAbsoluteSlash": false,
   // Never suggest a relative path into another package ("../../../shared/src/...").
   "typescript.preferences.autoImportSpecifierExcludeRegexes": ["^(\\./)?(\\.\\./){2,}[^/]+/src/"],
 

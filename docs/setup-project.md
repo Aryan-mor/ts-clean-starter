@@ -15,6 +15,7 @@ and do not skip the checks. The ready prompt that points here is in [README.md](
    - Next.js: `eslint.config.next.js`, `tsconfig.next.json`
    - React library: `eslint.config.react.js`, `tsconfig.react.json`
    - CI: `examples/ci.yml` to `.github/workflows/ci.yml`
+   - Cursor users: also `.cursor/rules/`
    - Monorepo: also read "Use this kit in a monorepo".
 
    `CLAUDE.md` comes from `examples/CLAUDE.md`, not from the repo root (that one is for

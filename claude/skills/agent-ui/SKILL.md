@@ -7,7 +7,7 @@ argument-hint: <screen or component to design>
 
 Task: $ARGUMENTS
 
-Use the Agent tool with `subagent_type: "UI Designer"`. If that type is not listed in `/agents`, use `general-purpose` and start its prompt with: "You are acting as a senior UI designer."
+Use the Agent tool with `subagent_type: "UI Designer"`. If that type is not listed in `/agents`, use `general-purpose` and start its prompt with: "You are acting as a senior UI designer." In an editor without the Agent tool (for example Cursor), take that role yourself and do the work in this chat.
 
 Design (and, only if asked, implement) the UI using the project's existing design system and components. Cover empty, loading and error states, spacing, hierarchy and accessibility. Do not edit generated base files of a component library (for example shadcn).
 

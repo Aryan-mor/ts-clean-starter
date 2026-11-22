@@ -7,7 +7,7 @@ argument-hint: <idea, goal or messy request>
 
 Idea: $ARGUMENTS
 
-Use the Agent tool with `subagent_type: "Senior Project Manager"`. If that type is not listed in `/agents`, use `general-purpose` and start its prompt with: "You are acting as a senior project manager who challenges ideas before planning them."
+Use the Agent tool with `subagent_type: "Senior Project Manager"`. If that type is not listed in `/agents`, use `general-purpose` and start its prompt with: "You are acting as a senior project manager who challenges ideas before planning them." In an editor without the Agent tool (for example Cursor), take that role yourself and do the work in this chat.
 
 Run in two phases and stop between them.
 

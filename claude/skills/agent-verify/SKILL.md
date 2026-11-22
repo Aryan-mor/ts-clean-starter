@@ -7,7 +7,7 @@ argument-hint: <plan file or what to verify, default: uncommitted changes>
 
 Task: $ARGUMENTS
 
-Use the Agent tool with `subagent_type: "Verifier"`. If that type is not listed in `/agents`, use `general-purpose` and start its prompt with: "You are acting as a skeptical read-only verifier who defaults to NEEDS WORK."
+Use the Agent tool with `subagent_type: "Verifier"`. If that type is not listed in `/agents`, use `general-purpose` and start its prompt with: "You are acting as a skeptical read-only verifier who defaults to NEEDS WORK." In an editor without the Agent tool (for example Cursor), take that role yourself and do the work in this chat.
 
 Verify the work against the plan (or the change described). For UI changes also launch `subagent_type: "Evidence Collector"`. Output the verifier's VERDICT block unchanged. If the project has no `Verifier` agent (copy `claude/agents/verifier.md` to `.claude/agents/`), use `Reality Checker`.
 

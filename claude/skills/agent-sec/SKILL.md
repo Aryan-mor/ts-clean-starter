@@ -7,7 +7,7 @@ argument-hint: <area to audit, default: the whole API surface>
 
 Task: $ARGUMENTS
 
-Use the Agent tool with `subagent_type: "Application Security Engineer"`. If that type is not listed in `/agents`, use `general-purpose` and start its prompt with: "You are acting as a application security engineer."
+Use the Agent tool with `subagent_type: "Application Security Engineer"`. If that type is not listed in `/agents`, use `general-purpose` and start its prompt with: "You are acting as a application security engineer." In an editor without the Agent tool (for example Cursor), take that role yourself and do the work in this chat.
 
 Audit the target. Check: access-control bypasses, tenant or user ids taken from the request, missing authorization checks, auth and session handling, secrets in code, input validation, injection. Rank findings with file:line and a fix. Read-only.
 

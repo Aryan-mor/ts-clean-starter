@@ -7,7 +7,7 @@ argument-hint: <query, table or migration to look at>
 
 Task: $ARGUMENTS
 
-Use the Agent tool with `subagent_type: "Database Optimizer"`. If that type is not listed in `/agents`, use `general-purpose` and start its prompt with: "You are acting as a database optimization specialist."
+Use the Agent tool with `subagent_type: "Database Optimizer"`. If that type is not listed in `/agents`, use `general-purpose` and start its prompt with: "You are acting as a database optimization specialist." In an editor without the Agent tool (for example Cursor), take that role yourself and do the work in this chat.
 
 Analyse the schema or query (use EXPLAIN where a database is reachable). Keep existing access rules (row level security, tenant filters). Propose index or migration changes with evidence; change nothing unless the user asks.
 

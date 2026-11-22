@@ -9,7 +9,7 @@ Task: $ARGUMENTS
 
 This needs the external `apple-design` skill (from emilkowalski/skills). Check that `.claude/skills/apple-design/SKILL.md` exists in the project or `~/.claude/skills/apple-design/SKILL.md` exists. If neither does, stop and tell the user to restore the external skills (`docs/external-skills.md`, or `npx skills@latest add emilkowalski/skills -s apple-design -a claude-code -y`). Do not review from memory.
 
-Use the Agent tool with `subagent_type: "UI Designer"`. If that type is not listed in `/agents`, use `general-purpose` and start its prompt with: "You are acting as a senior UI designer."
+Use the Agent tool with `subagent_type: "UI Designer"`. If that type is not listed in `/agents`, use `general-purpose` and start its prompt with: "You are acting as a senior UI designer." In an editor without the Agent tool (for example Cursor), take that role yourself and do the work in this chat.
 
 Tell the agent to read the `apple-design` SKILL.md in full first and follow it. Then review the target (the file, route or component named in the task; if it is a running page, use the Evidence Collector for screenshots). Where it applies to the target, also read `emil-design-eng` (polish), `mobile-native` (phone and PWA behaviour) and `break-ui` (worst-case data), when installed. Report findings ranked by severity, each with what, why (cite the skill's section) and a concrete fix in the project's stack. Review only; change code only if the user asks.
 

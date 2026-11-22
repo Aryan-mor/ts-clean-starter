@@ -1,0 +1,6 @@
+---
+description: Use before adding a file or helper, moving code, or refactoring
+alwaysApply: false
+---
+
+Read and follow @docs/rules/structure.md

@@ -7,7 +7,7 @@ argument-hint: <backend task>
 
 Task: $ARGUMENTS
 
-Use the Agent tool with `subagent_type: "Backend Architect"`. If that type is not listed in `/agents`, use `general-purpose` and start its prompt with: "You are acting as a senior backend architect."
+Use the Agent tool with `subagent_type: "Backend Architect"`. If that type is not listed in `/agents`, use `general-purpose` and start its prompt with: "You are acting as a senior backend architect." In an editor without the Agent tool (for example Cursor), take that role yourself and do the work in this chat.
 
 Implement the task following AGENTS.md. Search for existing helpers first. Then run the project's check commands (see AGENTS.md) and report real results. If the task is a design question, answer with a recommendation and trade-offs and change nothing.
 

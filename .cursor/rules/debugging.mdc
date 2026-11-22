@@ -1,0 +1,6 @@
+---
+description: Use when fixing an error, a failing test, type check or build
+alwaysApply: false
+---
+
+Read and follow @docs/rules/debugging.md

@@ -31,6 +31,18 @@ On another computer: clone this repo anywhere, then use the same prompt with tha
 One prompt installs eleven Claude Code skills and a verifier agent. See
 [docs/add-agents.md](./docs/add-agents.md).
 
+## Use with Cursor
+
+Cursor works with this kit as it is:
+
+- **Setup prompt:** paste the prompt above into Cursor's Agent chat. It follows `docs/setup-project.md` the same way.
+- **Rules:** Cursor reads `AGENTS.md` at the repo root. `.cursor/rules/main.mdc` is a one-line always-on pointer; `structure.mdc` and `debugging.mdc` are on-demand rules (the agent loads them by their description), so long rules cost nothing until needed.
+- **Skills:** Cursor loads `.claude/skills/`, `.agents/skills/` and `.cursor/skills/`. The `/agent-*` skills (copied to `.claude/skills/`) show up as `/agent-be`, `/agent-ui`, ... in Agent chat. Without Claude Code's subagents, Cursor does the work itself in that role.
+- **Editor settings:** `.vscode/` works in Cursor. If an extension from `extensions.json` is missing in Cursor's marketplace, skip it; ESLint and Prettier are the ones that matter.
+- **Not the same as Claude Code:** `skillOverrides` (hiding skill descriptions) is a Claude Code setting. See the Cursor note in `docs/external-skills.md`.
+
+I could not run Cursor itself while writing this; the file formats follow Cursor's skills documentation and third-party guides for rules. Report anything that does not load.
+
 ## What's in this repo
 
 | File                              | What it does                                                                                                                                    |
@@ -90,7 +102,8 @@ Copy at least:
 - `.vscode/settings.json`, `.vscode/extensions.json`
 - `commitlint.config.js`, `.lintstagedrc.json`
 - `.husky/pre-commit`, `.husky/commit-msg` (only these two; not `.husky/_`)
-- `AGENTS.md` and the `docs/rules/` folder, plus `examples/CLAUDE.md` as `CLAUDE.md` (optionally `.cursor/rules`)
+- `AGENTS.md` and the `docs/rules/` folder, plus `examples/CLAUDE.md` as `CLAUDE.md`
+- For Cursor users: the `.cursor/rules/` folder
 
 For a Next.js app, also copy `eslint.config.next.js` and `tsconfig.next.json`.
 For a React library, also copy `eslint.config.react.js` and `tsconfig.react.json`.

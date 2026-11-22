@@ -85,3 +85,10 @@ npx skills@latest add emilkowalski/skills -a claude-code -y \
 
 `agent-ui`, `agent-fe` and `agent-apple` use these when they are installed and do nothing
 different when they are not. Skip `animate-expo` and `write-swift` unless you build native apps.
+
+## Cursor
+
+Cursor loads `.claude/skills/` too, so restored skills work there. But `skillOverrides` is Claude
+Code only, so in Cursor the name and description of every installed skill is in the prompt. To avoid
+that, install only the skills you use, or add `disable-model-invocation: true` to a skill's frontmatter
+(the next `npx skills update` overwrites that, and the lock hash will differ).

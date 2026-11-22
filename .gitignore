@@ -33,3 +33,13 @@ pnpm-debug.log*
 .DS_Store
 Thumbs.db
 *.pem
+
+# Third-party Claude skills: restored from skills-lock.json (see docs/external-skills.md)
+.agents/
+.claude/skills/apple-design/
+.claude/skills/ask-emil/
+.claude/skills/break-ui/
+.claude/skills/emil-design-eng/
+.claude/skills/mobile-native/
+.claude/skills/pick-ui-library/
+.claude/skills/review-animations/

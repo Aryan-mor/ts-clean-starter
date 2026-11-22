@@ -1,0 +1,11 @@
+{
+  "skillOverrides": {
+    "apple-design": "user-invocable-only",
+    "ask-emil": "user-invocable-only",
+    "break-ui": "user-invocable-only",
+    "emil-design-eng": "user-invocable-only",
+    "mobile-native": "user-invocable-only",
+    "pick-ui-library": "user-invocable-only",
+    "review-animations": "user-invocable-only"
+  }
+}

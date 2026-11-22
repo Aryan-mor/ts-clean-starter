@@ -11,9 +11,4 @@ Use the Agent tool with `subagent_type: "Verifier"`. If that type is not listed 
 
 Verify the work against the plan (or the change described). For UI changes also launch `subagent_type: "Evidence Collector"`. Output the verifier's VERDICT block unchanged. If the project has no `Verifier` agent (copy `claude/agents/verifier.md` to `.claude/agents/`), use `Reality Checker`.
 
-Rules for every run:
-
-- Tell the user in one line which agent you launched and what it will do. When it returns, show its result with proof (commands run, file:line), not a bare "done".
-- Read the project's AGENTS.md (and CLAUDE.md) first and pass the relevant rules to the agent.
-- Do not commit, push, reset or delete unless the user asks.
-- End with: what changed (`git diff --stat`), checks run with their real results, and "Not verified" items.
+Rules: say in one line which agent you launched; show proof (commands run, file:line), not a bare "done"; read AGENTS.md first and pass the relevant rules to the agent; never commit, push, reset or delete unless asked. End with `git diff --stat`, real check results and "Not verified" items.

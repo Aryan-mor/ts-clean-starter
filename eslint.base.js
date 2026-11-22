@@ -243,6 +243,8 @@ const config = [
       "coverage/**",
       ".turbo/**",
       "node_modules/**",
+      ".agents/**",
+      ".claude/skills/**",
     ],
   },
 ];

@@ -28,7 +28,7 @@ On another computer: clone this repo anywhere, then use the same prompt with tha
 
 ## Add the agent commands (`/agent-be`, `/agent-fe`, `/agent-pm`, ...)
 
-One prompt installs ten Claude Code skills and a verifier agent. See
+One prompt installs eleven Claude Code skills and a verifier agent. See
 [docs/add-agents.md](./docs/add-agents.md).
 
 ## What's in this repo
@@ -56,9 +56,10 @@ One prompt installs ten Claude Code skills and a verifier agent. See
 | `.nvmrc`                          | Node.js version (24+ is required; this file pins 26).                                                                                           |
 | `AGENTS.md`                       | Coding rules for AI agents. `CLAUDE.md` and `.cursor/rules` point at it.                                                                        |
 | `CLAUDE.md`                       | Points at `AGENTS.md`, and tells Claude how to set this kit up in another project.                                                              |
-| `claude/`                         | Agent kit: `agents/verifier.md` and ten `/agent-*` skills. Install with the prompt in `docs/add-agents.md`.                                     |
+| `claude/`                         | Agent kit: `agents/verifier.md` and eleven `/agent-*` skills. Install with the prompt in `docs/add-agents.md`.                                  |
 | `docs/setup-project.md`           | Step-by-step setup of this kit in another project (the README prompt points here).                                                              |
 | `docs/add-agents.md`              | One prompt to add the agents and how to add your own.                                                                                           |
+| `docs/external-skills.md`         | How to install third-party skills without committing them, and restore them on a new machine.                                                   |
 | `.github/workflows/ci.yml`        | CI for this kit: install, format, lint, typecheck. No app build.                                                                                |
 | `examples/ci.yml`                 | A CI template you can copy into your own project.                                                                                               |
 
@@ -79,17 +80,17 @@ pnpm init
 
 Copy at least:
 
-- `eslint.base.js` and `eslint.config.js`
+- `eslint.base.js`, `eslint.config.js` and the `eslint-rules/` folder (always, the base config imports it)
 - `tsconfig.base.json`
 - `tsconfig.json` (or one of the specialized tsconfigs, renamed to `tsconfig.json` if you prefer)
 - `.prettierrc`, `.prettierignore`
 - `.editorconfig`
-- `.gitignore`
+- `.gitignore`, `.gitattributes`
 - `.nvmrc`
 - `.vscode/settings.json`, `.vscode/extensions.json`
 - `commitlint.config.js`, `.lintstagedrc.json`
-- `.husky/pre-commit`, `.husky/commit-msg`
-- `AGENTS.md` (and optionally `CLAUDE.md`, `.cursor/rules`)
+- `.husky/pre-commit`, `.husky/commit-msg` (only these two; not `.husky/_`)
+- `AGENTS.md` and the `docs/rules/` folder, plus `examples/CLAUDE.md` as `CLAUDE.md` (optionally `.cursor/rules`)
 
 For a Next.js app, also copy `eslint.config.next.js` and `tsconfig.next.json`.
 For a React library, also copy `eslint.config.react.js` and `tsconfig.react.json`.

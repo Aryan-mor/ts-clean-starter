@@ -7,3 +7,7 @@ out
 coverage
 pnpm-lock.yaml
 next-env.d.ts
+
+.agents
+.claude/skills
+skills-lock.json

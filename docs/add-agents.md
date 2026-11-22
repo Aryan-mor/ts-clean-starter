@@ -2,18 +2,19 @@
 
 The `claude/` folder holds a ready set of Claude Code helpers:
 
-| Command         | Agent it launches                             | Use it to                                                |
-| --------------- | --------------------------------------------- | -------------------------------------------------------- |
-| `/agent-pm`     | Senior Project Manager                        | Challenge an idea, discuss it, then split it into tasks. |
-| `/agent-plan`   | Master Plan Architect                         | Write a plan only (no code) with a done-check per step.  |
-| `/agent-be`     | Backend Architect                             | Implement or design backend work.                        |
-| `/agent-fe`     | Frontend Developer                            | Implement frontend work.                                 |
-| `/agent-ui`     | UI Designer                                   | Design a screen: states, hierarchy, accessibility.       |
-| `/agent-db`     | Database Optimizer                            | Indexes, `EXPLAIN`, migrations.                          |
-| `/agent-test`   | Test Automation Engineer + Evidence Collector | Write tests; screenshot proof for UI.                    |
-| `/agent-review` | Code Reviewer                                 | Review a diff (read-only).                               |
-| `/agent-sec`    | Application Security Engineer                 | Security audit (read-only).                              |
-| `/agent-verify` | `Verifier` (`claude/agents/verifier.md`)      | Skeptical check: default verdict is NEEDS WORK.          |
+| Command         | Agent it launches                             | Use it to                                                            |
+| --------------- | --------------------------------------------- | -------------------------------------------------------------------- |
+| `/agent-pm`     | Senior Project Manager                        | Challenge an idea, discuss it, then split it into tasks.             |
+| `/agent-plan`   | Master Plan Architect                         | Write a plan only (no code) with a done-check per step.              |
+| `/agent-be`     | Backend Architect                             | Implement or design backend work.                                    |
+| `/agent-fe`     | Frontend Developer                            | Implement frontend work.                                             |
+| `/agent-ui`     | UI Designer                                   | Design a screen: states, hierarchy, accessibility.                   |
+| `/agent-db`     | Database Optimizer                            | Indexes, `EXPLAIN`, migrations.                                      |
+| `/agent-test`   | Test Automation Engineer + Evidence Collector | Write tests; screenshot proof for UI.                                |
+| `/agent-review` | Code Reviewer                                 | Review a diff (read-only).                                           |
+| `/agent-sec`    | Application Security Engineer                 | Security audit (read-only).                                          |
+| `/agent-verify` | `Verifier` (`claude/agents/verifier.md`)      | Skeptical check: default verdict is NEEDS WORK.                      |
+| `/agent-apple`  | UI Designer + external `apple-design` skill   | Apple-principles review of a screen (needs docs/external-skills.md). |
 
 Every skill follows the same rules: say which agent it launched, read `AGENTS.md` first,
 never commit or push on its own, and end with `git diff --stat`, real check results and a

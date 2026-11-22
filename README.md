@@ -4,6 +4,33 @@ A copy-ready set of TypeScript, ESLint, Prettier, editor, and git-hook settings,
 plus this setup guide. This is **not** a full app or monorepo. You copy the files
 you need into a new or existing project.
 
+## Set up a project with Claude (one prompt)
+
+Open Claude Code **in the project you want to set up** and paste this. Change the first
+line to wherever this repo lives (a local path or the GitHub URL).
+
+```text
+Set up the ts-clean-starter kit in this project.
+
+Source: D:\projects\ts-clean-starter  (or https://github.com/Aryan-mor/ts-clean-starter)
+Read docs/setup-project.md in the source first and follow it step by step. Then read its
+AGENTS.md.
+
+- Project type: <new | single Node app | Next.js | React library | monorepo>
+- Keep my existing files: show a diff and ask before you overwrite or merge anything.
+- Install the dependencies with pnpm and run pnpm lint, pnpm check-types and
+  pnpm format:check. Show me the real results.
+- Ask me before adding the agent kit (docs/add-agents.md).
+- Do not commit.
+```
+
+On another computer: clone this repo anywhere, then use the same prompt with that path.
+
+## Add the agent commands (`/agent-be`, `/agent-fe`, `/agent-pm`, ...)
+
+One prompt installs ten Claude Code skills and a verifier agent. See
+[docs/add-agents.md](./docs/add-agents.md).
+
 ## What's in this repo
 
 | File                              | What it does                                                                                                                                    |
@@ -28,6 +55,10 @@ you need into a new or existing project.
 | `.gitignore`                      | node_modules, env files, build output, coverage.                                                                                                |
 | `.nvmrc`                          | Node.js version (24+ is required; this file pins 26).                                                                                           |
 | `AGENTS.md`                       | Coding rules for AI agents. `CLAUDE.md` and `.cursor/rules` point at it.                                                                        |
+| `CLAUDE.md`                       | Points at `AGENTS.md`, and tells Claude how to set this kit up in another project.                                                              |
+| `claude/`                         | Agent kit: `agents/verifier.md` and ten `/agent-*` skills. Install with the prompt in `docs/add-agents.md`.                                     |
+| `docs/setup-project.md`           | Step-by-step setup of this kit in another project (the README prompt points here).                                                              |
+| `docs/add-agents.md`              | One prompt to add the agents and how to add your own.                                                                                           |
 | `.github/workflows/ci.yml`        | CI for this kit: install, format, lint, typecheck. No app build.                                                                                |
 | `examples/ci.yml`                 | A CI template you can copy into your own project.                                                                                               |
 

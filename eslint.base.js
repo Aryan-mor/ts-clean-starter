@@ -160,11 +160,12 @@ const config = [
   },
 
   // File names in kebab-case: pipeline-stage.ts, not pipeline_stage.ts or PipelineStage.ts.
+  // A Next.js dynamic segment such as `[orgId]` is its param name, so it is left alone.
   {
     files: ["**/*.{js,mjs,ts,tsx}"],
     plugins: { unicorn },
     rules: {
-      "unicorn/filename-case": ["error", { case: "kebabCase" }],
+      "unicorn/filename-case": ["error", { case: "kebabCase", ignore: [/^\[.+\]$/] }],
     },
   },
 

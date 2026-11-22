@@ -12,7 +12,7 @@ line to wherever this repo lives (a local path or the GitHub URL).
 ```text
 Set up the ts-clean-starter kit in this project.
 
-Source: D:\projects\ts-clean-starter  (or https://github.com/Aryan-mor/ts-clean-starter)
+Source: https://github.com/Aryan-mor/ts-clean-starter
 Read docs/setup-project.md in the source first and follow it step by step. Then read its
 AGENTS.md.
 

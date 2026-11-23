@@ -1,3 +1,5 @@
+| `/agent-onboarding-lite` | none (runs in the main chat) | Quick, simple first look at a repo: what it is, how to run, main flow, 3 files (read-only). |
+
 # Add the agent kit with one prompt
 
 The `claude/` folder holds a ready set of Claude Code helpers:

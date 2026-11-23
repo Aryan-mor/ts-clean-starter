@@ -9,9 +9,11 @@ Task: $ARGUMENTS
 
 Do this yourself in this chat. Do not launch a subagent. Be fast: read the README, the root manifest (`package.json` or similar), the folder tree, `.env.example`, and only the few source files on the main path. Stop when you can answer the points below.
 
-Write in simple English (short sentences, no jargon without a one-line explanation). Facts from the code only: when you name a behavior, add the file (and line if easy). No refactor advice. Read-only: change nothing, run nothing that writes.
+Write in simple English (short sentences, no jargon without a one-line explanation). Facts from the code only: when you name a behavior, add the file (and line if easy). No refactor advice. Read-only: change nothing in the repo, run nothing that writes.
 
-Answer in this exact shape, max about 20 lines:
+Write the answer as readable Markdown to `~/.claude/onboarding/<repo-folder-name>-lite.md`, creating the folder if needed. It is outside the repo so git stays clean, and it is the only file you may write. In the chat, reply with that path and the "Say it out loud" lines.
+
+Use this exact shape, max about 20 lines:
 
 1. **What it is**: 1-2 sentences.
 2. **How to run it**: the commands and env vars it needs.

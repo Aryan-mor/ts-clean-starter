@@ -13,13 +13,56 @@ Write in simple English (short sentences, no jargon without a one-line explanati
 
 Write the answer as readable Markdown to `~/.claude/onboarding/<repo-folder-name>-lite.md`, creating the folder if needed. It is outside the repo so git stays clean, and it is the only file you may write. In the chat, reply with that path and the "Say it out loud" lines. Path rule: expand `~` to the real home folder and give the full absolute path. Print it on its own line as a bare URL like file:///C:/Users/NAME/.claude/onboarding/FILE.md (forward slashes, no backticks, no brackets) so the terminal makes it clickable, then the same path as plain text on the next line. Do not add notes about what you read, skipped or did not run.
 
-Use this exact shape, max about 20 lines:
+Use this exact Markdown layout. Put a blank line between every block. Keep bullets under about 15 words and paragraphs to 2 short sentences. The file must read well in a Markdown preview (in VS Code: Ctrl+Shift+V).
 
-1. **What it is**: 1-2 sentences.
-2. **How to run it**: the commands and env vars it needs.
-3. **Main flow**: one line, max 6 steps, like `request -> route -> queue -> pipeline -> db`, each step with its file.
-4. **Read first**: 3 files, one short reason each.
-5. **Watch out**: up to 3 things in the code that look surprising or fragile, each with its file. Say what you see, not how to fix it.
-6. **Say it out loud**: a 2-3 sentence summary I could say to an interviewer.
+````markdown
+# <repo-name>: quick onboarding
+
+> One sentence: what this repo does.
+
+## What it is
+
+1-2 short sentences.
+
+## How to run
+
+```bash
+<install command>
+<run command>
+```
+
+| Env var | Default | What it does |
+| ------- | ------- | ------------ |
+| `NAME`  | `value` | short reason |
+
+## Main flow
+
+```text
+<input, e.g. POST /companies>   src/routes/x.ts
+  -> <step>                      src/...
+  -> <step>                      src/...
+  -> <output, e.g. db row>       src/...
+```
+
+(max 6 steps, one per line)
+
+## Read first
+
+| File   | Why          |
+| ------ | ------------ |
+| `path` | short reason |
+
+(exactly 3 rows)
+
+## Watch out
+
+- **`path`**: what looks surprising or fragile, in one sentence. Say what you see, not how to fix it.
+
+(max 3 bullets)
+
+## Say it out loud
+
+> 2-3 sentences I could say to an interviewer.
+````
 
 If you skipped part of the repo, say which part in one line at the end.

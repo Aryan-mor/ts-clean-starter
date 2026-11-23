@@ -54,11 +54,11 @@ src/
 
 (top-level code folders only, one short note each)
 
-## Main features
+## Entry points
 
-- **<feature>**: one sentence, with its file.
+- **<route, command, page or job>**: one sentence, with its file.
 
-(max 5 bullets: API endpoints, pages, commands or jobs, whatever the repo exposes)
+(max 5 bullets: what the code exposes, not product marketing)
 
 ## Main flow
 
@@ -80,7 +80,7 @@ src/
 
 ## Watch out
 
-- **`path`**: what looks surprising or fragile, in one sentence. Say what you see, not how to fix it.
+- **`path`**: what looks surprising or fragile, in one sentence. State the fact (dead code, misleading name, in-memory state, duplicate logic), not how to fix it.
 
 (max 3 bullets)
 ````

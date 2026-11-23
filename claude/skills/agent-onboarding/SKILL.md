@@ -15,11 +15,12 @@ Facts only: never say a module owns behavior without pointing to the file that i
 
 Write the full report as readable Markdown: `#`/`##` headings per section, a blank line between every block, short bullets (under about 15 words), tables for file lists, and fenced code blocks for commands and flows (one step per line). It must read well in a Markdown preview (in VS Code: Ctrl+Shift+V). Save it to `~/.claude/onboarding/<repo-folder-name>.md`, creating the folder if needed. It is outside the repo so git stays clean, and it is the only file you may write. In the chat, reply only with that path and the 1-line summary. Path rule: expand `~` to the real home folder and give the full absolute path. Print it on its own line as a bare URL like file:///C:/Users/NAME/.claude/onboarding/FILE.md (forward slashes, no backticks, no brackets) so the terminal makes it clickable, then the same path as plain text on the next line. Do not add notes about what you read, skipped or did not run.
 
-The report has four levels, in this order:
+Follow the agent's own three-level Output Format ("Codebase Orientation Map": 1-Line Summary, 5-Minute Explanation, Deep Dive with Top-Level Structure and Key Boundaries) exactly, and keep its "if you only read three files first, read these" line in the 5-minute part. Inside the Deep Dive, also add these facts from manifests and config (still code facts, not product features):
 
-1. **1-line summary**: what this codebase is.
-2. **Project overview**: what it does (problem, main input, main output); tech stack table (Part | Tool: language/runtime, framework, database/storage, key libraries); how to run (install and run commands in a code block, env vars table: Name | Default | What it does); folder structure (top-level code folders in a text tree, one note each); main features (endpoints, pages, commands or jobs, each with its file).
-3. **5-minute explanation**: primary tasks in code, primary inputs, primary outputs, key files with responsibilities, main code paths (entry -> orchestration -> core logic -> outputs), and "if you only read three files first, read these".
-4. **Deep dive**: type and runtimes; data model (tables or main types with key fields); entry points with why they matter; top-level structure table (Path | Purpose | Notes); key boundaries (presentation, domain, persistence/external I/O, cross-cutting: auth, logging, config, jobs); responsibilities by file; detailed code flows step by step with paths; how the pieces map together (imports, calls, handlers, persistence); full list of files inspected.
+- **Tech stack** table (Part | Tool): language/runtime, framework, database/storage, key libraries, from the manifest.
+- **How to run**: install and run commands in a code block (from scripts), env vars table (Name | Default | What it does) from `.env.example` or config.
+- **Public interfaces**: routes, CLI commands, jobs or package exports, each with its file.
+- **Data model**: tables or main types with key fields, from the schema files.
+- **Things that look important but aren't / misleading names**: only when visible in the code, as facts.
 
 Rules: say in one line which agent you launched; show proof (commands run, file:line), not a bare "done"; read AGENTS.md first and pass the relevant rules to the agent; never commit, push, reset or delete unless asked. End with `git diff --stat` (should be empty), real check results and "Not verified" items.

@@ -2,19 +2,20 @@
 
 The `claude/` folder holds a ready set of Claude Code helpers:
 
-| Command         | Agent it launches                             | Use it to                                                            |
-| --------------- | --------------------------------------------- | -------------------------------------------------------------------- |
-| `/agent-pm`     | Senior Project Manager                        | Challenge an idea, discuss it, then split it into tasks.             |
-| `/agent-plan`   | Master Plan Architect                         | Write a plan only (no code) with a done-check per step.              |
-| `/agent-be`     | Backend Architect                             | Implement or design backend work.                                    |
-| `/agent-fe`     | Frontend Developer                            | Implement frontend work.                                             |
-| `/agent-ui`     | UI Designer                                   | Design a screen: states, hierarchy, accessibility.                   |
-| `/agent-db`     | Database Optimizer                            | Indexes, `EXPLAIN`, migrations.                                      |
-| `/agent-test`   | Test Automation Engineer + Evidence Collector | Write tests; screenshot proof for UI.                                |
-| `/agent-review` | Code Reviewer                                 | Review a diff (read-only).                                           |
-| `/agent-sec`    | Application Security Engineer                 | Security audit (read-only).                                          |
-| `/agent-verify` | `Verifier` (`claude/agents/verifier.md`)      | Skeptical check: default verdict is NEEDS WORK.                      |
-| `/agent-apple`  | UI Designer + external `apple-design` skill   | Apple-principles review of a screen (needs docs/external-skills.md). |
+| Command             | Agent it launches                             | Use it to                                                             |
+| ------------------- | --------------------------------------------- | --------------------------------------------------------------------- |
+| `/agent-pm`         | Senior Project Manager                        | Challenge an idea, discuss it, then split it into tasks.              |
+| `/agent-plan`       | Master Plan Architect                         | Write a plan only (no code) with a done-check per step.               |
+| `/agent-be`         | Backend Architect                             | Implement or design backend work.                                     |
+| `/agent-fe`         | Frontend Developer                            | Implement frontend work.                                              |
+| `/agent-ui`         | UI Designer                                   | Design a screen: states, hierarchy, accessibility.                    |
+| `/agent-db`         | Database Optimizer                            | Indexes, `EXPLAIN`, migrations.                                       |
+| `/agent-test`       | Test Automation Engineer + Evidence Collector | Write tests; screenshot proof for UI.                                 |
+| `/agent-review`     | Code Reviewer                                 | Review a diff (read-only).                                            |
+| `/agent-sec`        | Application Security Engineer                 | Security audit (read-only).                                           |
+| `/agent-verify`     | `Verifier` (`claude/agents/verifier.md`)      | Skeptical check: default verdict is NEEDS WORK.                       |
+| `/agent-apple`      | UI Designer + external `apple-design` skill   | Apple-principles review of a screen (needs docs/external-skills.md).  |
+| `/agent-onboarding` | Codebase Onboarding Engineer                  | Map an unknown repo: entry points, code flows, key files (read-only). |
 
 Every skill follows the same rules: say which agent it launched, read `AGENTS.md` first,
 never commit or push on its own, and end with `git diff --stat`, real check results and a
@@ -36,7 +37,7 @@ Read docs/add-agents.md and AGENTS.md in the source first.
 2. Run /agents. For every subagent_type the skills use (Backend Architect, Frontend
    Developer, UI Designer, Database Optimizer, Master Plan Architect, Code Reviewer,
    Application Security Engineer, Test Automation Engineer, Evidence Collector,
-   Senior Project Manager, Reality Checker) that is not listed, tell me. Do not invent
+   Senior Project Manager, Reality Checker, Codebase Onboarding Engineer) that is not listed, tell me. Do not invent
    them; the skills fall back to general-purpose.
 3. Add a "Project-specific rules" section to this project's AGENTS.md if it has none
    (data access, auth, folder layout). Ask me for the rules; do not guess them.

@@ -11,7 +11,7 @@ Do this yourself in this chat. Do not launch a subagent. Be fast: read the READM
 
 Write in simple English (short sentences, no jargon without a one-line explanation). Facts from the code only: when you name a behavior, add the file (and line if easy). No refactor advice. Read-only: change nothing in the repo, run nothing that writes.
 
-Write the answer as readable Markdown to `~/.claude/onboarding/<repo-folder-name>-lite.md`, creating the folder if needed. It is outside the repo so git stays clean, and it is the only file you may write. In the chat, reply with that path and the "Say it out loud" lines.
+Write the answer as readable Markdown to `~/.claude/onboarding/<repo-folder-name>-lite.md`, creating the folder if needed. It is outside the repo so git stays clean, and it is the only file you may write. In the chat, reply with that path and the "Say it out loud" lines. Path rule: expand `~` to the real home folder and give the full absolute path. Print it on its own line as a bare URL like file:///C:/Users/NAME/.claude/onboarding/FILE.md (forward slashes, no backticks, no brackets) so the terminal makes it clickable, then the same path as plain text on the next line. Do not add notes about what you read, skipped or did not run.
 
 Use this exact shape, max about 20 lines:
 

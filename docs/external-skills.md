@@ -21,6 +21,8 @@ This writes `.claude/skills/<skill-name>/` and `skills-lock.json`. Then:
 
 Read a skill's `SKILL.md` before you install it: skills run with full agent permissions.
 
+Before installing a new skill, run `/skill-audit` (see `.claude/skills/skill-audit/`). It scans the skill with [SkillSpector](https://github.com/NVIDIA/SkillSpector) (static analysis by default) and gives a go/no-go. Set the `SKILLSPECTOR` environment variable to your SkillSpector executable or wrapper if it is not already on `PATH`.
+
 ## Zero prompt cost: call them only by name
 
 Every installed skill puts its name and description into **every** prompt. To avoid that, hide

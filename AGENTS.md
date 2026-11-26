@@ -29,7 +29,11 @@ tsconfig option.
   type with `z.infer`. Use top-level formats (`z.uuid().brand<"UserId">()`, not deprecated
   `z.string().uuid()`). Units follow the same pattern
   (`z.number().int().nonnegative().brand<"Cents">()`). Parse at the system boundary (API, DB,
-  user input) with `.parse` or `.safeParse`. No manual brand helpers and no `as` casts for
+  user input) with `.parse` or `.safeParse`. At the database, use a Drizzle `customType`
+  whose `fromDriver`/`toDriver` call the schema's `.parse`, so a select returns a branded
+  value, not a `$type` annotation alone. Keep the SQL type (`uuid`, `text`, `bigint`)
+  unchanged so no migration is needed. `customType` has no `defaultRandom()`: use
+  `.default(sql`gen_random_uuid()`)`. No manual brand helpers and no `as` casts for
   brands. `noUncheckedIndexedAccess` is on. No `enum` or `namespace`: use unions and `as const`.
 - Never disable a lint rule without a reason:
   `// eslint-disable-next-line <rule> -- <why>`. No file-wide disables.

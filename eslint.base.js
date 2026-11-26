@@ -30,7 +30,7 @@ const namingConvention = [
   },
   { selector: "typeLike", format: ["PascalCase"] },
   { selector: "enumMember", format: ["UPPER_CASE", "PascalCase"] },
-  // __Org__ style brand keys (branded ID types) are allowed.
+  // Double-underscore keys such as `__typename` are allowed.
   {
     selector: ["objectLiteralProperty", "typeProperty"],
     format: ["camelCase", "UPPER_CASE", "PascalCase"],

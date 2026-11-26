@@ -25,9 +25,12 @@ tsconfig option.
 - Small functions with one job, early returns, arrow functions, named exports.
 - Imports: with NodeNext, relative imports end in `.js`. No barrel `index.ts` files (circular imports give `undefined` at runtime). Type-only
   imports use `type`. Do not sort imports by hand; `pnpm lint:fix` does it.
-- Types: branded types for ids and units (`UserId`, `Cents`) made by validating helpers; `as`
-  only inside those helpers. `noUncheckedIndexedAccess` is on. No `enum` or `namespace`: use
-  unions and `as const`.
+- Types: branded ids and units (`UserId`, `Cents`) are Zod 4 schemas with `.brand`; infer the
+  type with `z.infer`. Use top-level formats (`z.uuid().brand<"UserId">()`, not deprecated
+  `z.string().uuid()`). Units follow the same pattern
+  (`z.number().int().nonnegative().brand<"Cents">()`). Parse at the system boundary (API, DB,
+  user input) with `.parse` or `.safeParse`. No manual brand helpers and no `as` casts for
+  brands. `noUncheckedIndexedAccess` is on. No `enum` or `namespace`: use unions and `as const`.
 - Never disable a lint rule without a reason:
   `// eslint-disable-next-line <rule> -- <why>`. No file-wide disables.
 

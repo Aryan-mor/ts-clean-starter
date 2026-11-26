@@ -13,11 +13,13 @@ Read this before you add a file or helper, move code, or refactor.
   `const` (with `as const`): `z.enum(SORT_DIRS)`, not `z.enum(["asc", "desc"])`.
 - **One source of truth.** Derive types from values (`keyof typeof X`, `(typeof X)[number]`,
   `z.infer<typeof schema>`). Never write the same union by hand twice.
-- **Branded columns.** Ids and units stored in Postgres use a Drizzle `customType` whose
-  `fromDriver` and `toDriver` call the Zod schema's `.parse`. Do not rely on `.$type<UserId>()`
-  alone (types without a runtime check). Keep the SQL type the same as the built-in column
-  (`uuid`, `text`, `bigint`) so drizzle-kit does not emit a migration. `customType` has no
-  `defaultRandom()`; use `.default(sql`gen_random_uuid()`)`.
+- **Branded columns.** Ids and units stored in Postgres use a Drizzle `customType`.
+  `toDriver` calls the Zod schema's `.parse` (validate on write). `fromDriver` only brands,
+  with a single `as` allowed only there: DB constraints already guarantee the shape, and
+  parse would add per-row cost and fail a whole query on a legacy row. Do not rely on
+  `.$type<UserId>()` alone, and do not brand with `as` anywhere else. Keep the SQL type the
+  same as the built-in column (`uuid`, `text`, `bigint`) so drizzle-kit does not emit a
+  migration. `customType` has no `defaultRandom()`; use `.default(sql`gen_random_uuid()`)`.
 - **Where things go (smallest scope that works):**
   - Used in one file: keep it there, not exported.
   - Used by several files of one feature: a file in the feature folder.
